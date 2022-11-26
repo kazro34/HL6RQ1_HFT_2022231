@@ -56,7 +56,7 @@ namespace HL6RQ1_HFT_2022231.Logic
         // NON CRUDS
         public IEnumerable<KeyValuePair<string, double>> GetAverageIncomePerBookPerYear(int year)
         {
-            return from l in repo.ReadAll().Where(t => DateTime.Parse(t.In).Year.Equals(year)).ToList()
+            return from l in repo.ReadAll().Where(t => DateTime.Parse(t.Out).Year.Equals(year)).ToList()
                    group l by l.LentBook.Title into g
                    select new KeyValuePair<string, double>
                    (g.Key, g.Average(t => t.In != null ? (t.LentBook.LentingFee * (DateTime.Parse(t.In).Subtract(DateTime.Parse(t.Out)).TotalDays)) : t.LentBook.LentingFee * 0));
