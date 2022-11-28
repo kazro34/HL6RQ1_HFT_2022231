@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HL6RQ1_HFT_2022231.Repository
 {
-    public partial class LibraryDbContext : DbContext
+    public class LibraryDbContext : DbContext
     {
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Book> Books { get; set; }
@@ -19,18 +19,15 @@ namespace HL6RQ1_HFT_2022231.Repository
         {
             this.Database.EnsureCreated();
         }
-        public LibraryDbContext(DbContextOptions<LibraryDbContext> options)
-            : base(options)
-        {
-            this.Database.EnsureCreated();
-        }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder
-                    .UseInMemoryDatabase("Librarydb")
-                    .UseLazyLoadingProxies();
+                    .UseLazyLoadingProxies()
+                    .UseInMemoryDatabase("Librarydb");
+                    
             }
         }
 
@@ -38,8 +35,10 @@ namespace HL6RQ1_HFT_2022231.Repository
         {
             modelBuilder.Entity<Book>(entity =>
 
-                entity.HasOne(book => book.Author).WithMany(author => author.Books)
-                .HasForeignKey(book => book.AuthorId).OnDelete(DeleteBehavior.ClientSetNull));
+                entity.HasOne(book => book.Author)
+                .WithMany(author => author.Books)
+                .HasForeignKey(book => book.AuthorId)
+                .OnDelete(DeleteBehavior.ClientSetNull));
 
             modelBuilder.Entity<Lenting>(entity =>
              entity.HasOne(entity => entity.LentBook)
