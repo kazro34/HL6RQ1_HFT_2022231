@@ -1,7 +1,5 @@
 ﻿using HL6RQ1_HFT_2022231.Logic;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace HL6RQ1_HFT_2022231.Endpoint.Controllers

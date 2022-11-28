@@ -17,7 +17,7 @@ namespace HL6RQ1_HFT_2022231.Logic
             this.repo = repo;
         }
 
-        public void Creat(Author item)
+        public void Create(Author item)
         {
             this.repo.Create(item);
         }

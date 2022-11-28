@@ -10,7 +10,7 @@ namespace HL6RQ1_HFT_2022231.Client
         {
             try
             {
-                RestService rest = new RestService("http://localhost:35445/", typeof(Lenting).Name);
+                RestService rest = new RestService("http://localhost:54941/", typeof(Lenting).Name);
                 CrudService crud = new CrudService(rest);
                 NonCrudService nonCrud = new NonCrudService(rest);
 
@@ -42,12 +42,14 @@ namespace HL6RQ1_HFT_2022231.Client
                     .Add("People who are fine for latency", () => nonCrud.HastoPayFine())
                     .Add("Books out", () => nonCrud.StillOpenLentsByBookId())
                     .Add("Exit", ConsoleMenu.Close);
+               
                 var menu = new ConsoleMenu(args, level: 0)
                     .Add("Lentings", () => LentSubMenu.Show())
                     .Add("Books", () => bookSubMenu.Show())
                     .Add("Authors", () => AuthorSubMenu.Show())
                     .Add("Statistics", () => statsSubMenu.Show())
                     .Add("Exit", ConsoleMenu.Close);
+
                 menu.Show();
             }
             catch (Exception ex)

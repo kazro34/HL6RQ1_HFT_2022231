@@ -31,7 +31,7 @@ namespace HL6RQ1_HFT_2022231.Endpoint.Controllers
             this.logic.Create(value);
         }
         [HttpPut]
-        public void Put([FromBody] Book value)
+        public void Update([FromBody] Book value)
         {
             this.logic.Update(value);
         }
