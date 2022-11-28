@@ -1,3 +1,6 @@
+using HL6RQ1_HFT_2022231.Logic;
+using HL6RQ1_HFT_2022231.Models;
+using HL6RQ1_HFT_2022231.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +29,14 @@ namespace HL6RQ1_HFT_2022231.Endpoint
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddTransient<LibraryDbContext>();
+            services.AddTransient<IRepository<Book>, BookRepository>();
+            services.AddTransient<IRepository<Author>, AuthorRepository>();
+            services.AddTransient<IRepository<Lenting>, LentingRepository>();
+
+            services.AddTransient<IBookLogic, BookLogic>();
+            services.AddTransient<ILentingLogic, LentingLogic>();
+            services.AddTransient<IAuthorLogic, AuthorLogic>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HL6RQ1_HFT_2022231.Endpoint", Version = "v1" });
