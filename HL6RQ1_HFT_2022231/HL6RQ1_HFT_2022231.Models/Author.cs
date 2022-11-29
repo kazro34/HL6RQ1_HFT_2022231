@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace HL6RQ1_HFT_2022231.Models
 {
+    [Table("Author")]
     public class Author
     {
         public Author()
         {
-            this.Books = new HashSet<Book>();
+            Books = new HashSet<Book>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int authorId { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         [NotMapped]

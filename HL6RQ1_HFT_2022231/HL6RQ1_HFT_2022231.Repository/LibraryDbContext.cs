@@ -33,15 +33,15 @@ namespace HL6RQ1_HFT_2022231.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Book>(entity =>
+            modelBuilder.Entity<Book>(book =>
 
-                entity.HasOne(book => book.Author)
+                book.HasOne(book => book.Author)
                 .WithMany(author => author.Books)
                 .HasForeignKey(book => book.AuthorId)
                 .OnDelete(DeleteBehavior.ClientSetNull));
 
             modelBuilder.Entity<Lenting>(entity =>
-             entity.HasOne(entity => entity.LentBook)
+             entity.HasOne(entity => entity.Book)
                 .WithMany(book => book.Lentings)
                 .HasForeignKey(entity => entity.BookId)
                 .OnDelete(DeleteBehavior.Cascade));

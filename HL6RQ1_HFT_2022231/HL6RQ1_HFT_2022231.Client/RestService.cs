@@ -12,7 +12,7 @@ namespace HL6RQ1_HFT_2022231.Client
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "Rent")
+        public RestService(string baseurl, string pingableEndpoint = "swagger")
         {
             bool isOk = false;
             do
@@ -34,6 +34,7 @@ namespace HL6RQ1_HFT_2022231.Client
                 return false;
             }
         }
+
         private void Init(string baseurl)
         {
             client = new HttpClient();
@@ -41,17 +42,18 @@ namespace HL6RQ1_HFT_2022231.Client
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue
-                ("Application/json"));
+                ("application/json"));
             try
             {
                 client.GetAsync("").GetAwaiter().GetResult();
             }
             catch (HttpRequestException)
             {
-
                 throw new ArgumentException("Endpoint is not available!");
             }
+
         }
+
         public List<T> Get<T>(string endpoint)
         {
             List<T> items = new List<T>();
@@ -63,6 +65,7 @@ namespace HL6RQ1_HFT_2022231.Client
             else
             {
                 var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
             }
             return items;
         }
@@ -81,6 +84,7 @@ namespace HL6RQ1_HFT_2022231.Client
             }
             return items;
         }
+
         public T GetSingle<T>(string endpoint)
         {
             T item = default(T);
@@ -96,6 +100,7 @@ namespace HL6RQ1_HFT_2022231.Client
             }
             return item;
         }
+
         public T Get<T>(int id, string endpoint)
         {
             T item = default(T);
@@ -111,9 +116,13 @@ namespace HL6RQ1_HFT_2022231.Client
             }
             return item;
         }
+
+
         public void Post<T>(T item, string endpoint)
         {
-            HttpResponseMessage response = client.PostAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
+            HttpResponseMessage response =
+                client.PostAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
+
             if (!response.IsSuccessStatusCode)
             {
                 var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
@@ -121,25 +130,32 @@ namespace HL6RQ1_HFT_2022231.Client
             }
             response.EnsureSuccessStatusCode();
         }
+
         public void Delete(int id, string endpoint)
         {
-            HttpResponseMessage response = client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+            HttpResponseMessage response =
+                client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+
             if (!response.IsSuccessStatusCode)
             {
                 var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
                 throw new ArgumentException(error.Msg);
             }
-            response.EnsureSuccessStatusCode();
 
+            response.EnsureSuccessStatusCode();
         }
+
         public void Put<T>(T item, string endpoint)
         {
-            HttpResponseMessage response = client.PutAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
+            HttpResponseMessage response =
+                client.PutAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
+
             if (!response.IsSuccessStatusCode)
             {
                 var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
                 throw new ArgumentException(error.Msg);
             }
+
             response.EnsureSuccessStatusCode();
         }
 

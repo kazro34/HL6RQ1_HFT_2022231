@@ -33,25 +33,7 @@ namespace HL6RQ1_HFT_2022231.Client
             }
             rest.Post(instance, typeof(T).Name);
         }
-        public void List<T>()
-        {
-            var properties = typeof(T).GetProperties().Where(p => p.GetAccessors().All(a => !a.IsVirtual));
-            var items = rest.Get<T>(typeof(T).Name);
-            foreach (var property in properties)
-            {
-                Console.Write($"{property.Name}\t");
-            }
-            Console.Write("\n");
-            foreach (var item in items)
-            {
-                foreach (var property in properties)
-                {
-                    Console.Write($"{property.GetValue(item)}\t");
-                }
-                Console.Write("\n");
-            }
-            Console.ReadLine();
-        }
+        
         public void Update<T>()
         {
             Console.WriteLine("Enter Entity's Id to update:");

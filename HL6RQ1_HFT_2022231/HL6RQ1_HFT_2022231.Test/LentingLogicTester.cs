@@ -46,12 +46,12 @@ namespace HL6RQ1_HFT_2022231.Test
             fakeBook6.LentingFee = 6000;
             var lentings = new List<Lenting>()
             {
-            new Lenting() { Id = 1, Name="Teszt Elek", BookId= fakeBook.Id, Out= "2022.04.13", In="2021.04.20", LentBook =fakeBook},
-            new Lenting() { Id = 2, Name = "Kiss Milán", BookId = fakeBook.Id,Out = "2022.05.13", In = "2021.05.23", LentBook =fakeBook },
-            new Lenting() { Id = 3, Name = "Bartalos Emese", BookId = fakeBook3.Id, Out = "2022.04.15", In = "2022.05.26", LentBook =fakeBook3},
-            new Lenting() { Id = 4, Name = "Misurda Luca", BookId = fakeBook4.Id, Out = "2022.04.12", In = "2022.04.20",LentBook =fakeBook3 },
-            new Lenting() { Id = 5, Name = "Nagy Dávid", BookId = fakeBook5.Id, Out = "2021.04.13", In = "2021.04.22",LentBook =fakeBook4 },
-            new Lenting() { Id = 6, Name = "Kober Ildikó", BookId = fakeBook6.Id, Out = "2021.01.01", In =null,LentBook =fakeBook5 },
+            new Lenting() { Id = 1, Name="Teszt Elek", BookId= fakeBook.Id, Out= "2022.04.13", In="2021.04.20", Book =fakeBook},
+            new Lenting() { Id = 2, Name = "Kiss Milán", BookId = fakeBook.Id,Out = "2022.05.13", In = "2021.05.23", Book =fakeBook },
+            new Lenting() { Id = 3, Name = "Bartalos Emese", BookId = fakeBook3.Id, Out = "2022.04.15", In = "2022.05.26", Book =fakeBook3},
+            new Lenting() { Id = 4, Name = "Misurda Luca", BookId = fakeBook4.Id, Out = "2022.04.12", In = "2022.04.20",Book =fakeBook3 },
+            new Lenting() { Id = 5, Name = "Nagy Dávid", BookId = fakeBook5.Id, Out = "2021.04.13", In = "2021.04.22",Book =fakeBook4 },
+            new Lenting() { Id = 6, Name = "Kober Ildikó", BookId = fakeBook6.Id, Out = "2021.01.01", In =null,Book =fakeBook5 },
             }.AsQueryable();
 
             mockRepository.Setup(t => t.ReadAll()).Returns(lentings);

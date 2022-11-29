@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace HL6RQ1_HFT_2022231.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class BookController : ControllerBase
     {

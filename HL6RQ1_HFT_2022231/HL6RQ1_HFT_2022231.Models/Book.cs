@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace HL6RQ1_HFT_2022231.Models
 {
+    [Table("Book")]
     public class Book
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
         public string Title { get; set; }
 
         public int LentingFee { get; set; }

@@ -57,14 +57,14 @@ namespace HL6RQ1_HFT_2022231.Logic
         public IEnumerable<KeyValuePair<string, double>> GetAverageIncomePerBookPerYear(int year)
         {
             return from l in repo.ReadAll().Where(t => DateTime.Parse(t.Out).Year.Equals(year)).ToList()
-                   group l by l.LentBook.Title into g
+                   group l by l.Book.Title into g
                    select new KeyValuePair<string, double>
-                   (g.Key, g.Average(t => t.In != null ? (t.LentBook.LentingFee * (DateTime.Parse(t.In).Subtract(DateTime.Parse(t.Out)).TotalDays)) : t.LentBook.LentingFee * 0));
+                   (g.Key, g.Average(t => t.In != null ? (t.Book.LentingFee * (DateTime.Parse(t.In).Subtract(DateTime.Parse(t.Out)).TotalDays)) : t.Book.LentingFee * 0));
         }
 
         public IEnumerable<int> HasToPayFine()
         {
-            return this.repo.ReadAll().Where(t => t.In == null).Select(t => t.BookId).ToList();
+            return this.repo.ReadAll().Where(t => t.In == null && DateTime.Now.Subtract(DateTime.Parse(t.Out)).TotalDays > 365).Select(t => t.Id).ToList();
         }
 
         public IEnumerable<int> StillOpenLentsByBookId()
