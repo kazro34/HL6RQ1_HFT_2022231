@@ -14,12 +14,17 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Books}">
+        <ListBox ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedAuthor}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Title}"/>
+                    <Label Content="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel Grid.Column="1" >
+            <Button Content="Create Author" Command="{Binding CreateAuthorCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete Author" Command="{Binding DeleteAuthorCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update Author" Command="{Binding UpdateAuthorCommand}" Margin="10" Padding="10"/>
+        </StackPanel>
     </Grid>
 </Window>
