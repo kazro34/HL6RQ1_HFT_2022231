@@ -25,5 +25,11 @@ namespace HL6RQ1_HFT_2022231.Models
         [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Book> Books { get; set; }
+
+        public Author( string Name, int authorId)
+        {
+            this.Name = Name;
+            this.authorId = authorId;
+        }
     }
 }

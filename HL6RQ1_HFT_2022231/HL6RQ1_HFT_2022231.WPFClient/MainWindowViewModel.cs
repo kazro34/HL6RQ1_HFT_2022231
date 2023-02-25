@@ -3,9 +3,12 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HL6RQ1_HFT_2022231.WPFClient
@@ -19,10 +22,20 @@ namespace HL6RQ1_HFT_2022231.WPFClient
         public Author SelectedAuthor
         {
             get { return selectedAuthor; }
-            set {
-                     SetProperty(ref selectedAuthor, value);
-                     (DeleteAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
-                }
+            set
+            {
+                SetProperty(ref selectedAuthor, value);
+                (DeleteAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
+                //if (value != null)
+                //{
+                //    selectedAuthor = new Author()
+                //    {
+                //        Name = value.Name,
+                //        authorId = value.authorId,
+                //    };
+                    
+                //}              
+            }
         }
 
 
@@ -32,25 +45,46 @@ namespace HL6RQ1_HFT_2022231.WPFClient
 
         public ICommand UpdateAuthorCommand { get; set; }
 
+        public static bool IsInDesignMode 
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
+        }
+
         public MainWindowViewModel()
         {
-            Authors = new RestCollection<Author>("http://localhost:54941/", "author");
+            if (!IsInDesignMode)
+            {
+                
+                Authors = new RestCollection<Author>("http://localhost:54941/", "author");
 
-            CreateAuthorCommand = new RelayCommand(() => {
-                Authors.Add(new Author()
+                CreateAuthorCommand = new RelayCommand(() =>
                 {
-                    Name = "Kiss Béla"
+                    Authors.Add(new Author()
+                    {
+                        Name = SelectedAuthor.Name
+                    });
                 });
-            });
 
-            DeleteAuthorCommand = new RelayCommand(() =>
-            {
-                Authors.Delete(SelectedAuthor.authorId);
-            },
-            () => 
-            {
-                return SelectedAuthor != null; 
-            }); 
+                UpdateAuthorCommand = new RelayCommand(() => 
+                {
+                    Authors.Update(SelectedAuthor);
+                });
+
+                DeleteAuthorCommand = new RelayCommand(() =>
+                {
+                    Authors.Delete(SelectedAuthor.authorId);
+                },
+                () =>
+                {
+                    return SelectedAuthor != null;
+                });
+                
+
+            }          
         }
     }
 }

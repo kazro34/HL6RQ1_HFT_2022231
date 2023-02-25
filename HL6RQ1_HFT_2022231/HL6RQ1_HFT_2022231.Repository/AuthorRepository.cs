@@ -22,9 +22,16 @@ namespace HL6RQ1_HFT_2022231.Repository
         public override void Update(Author entity)
         {
             var old = Read(entity.authorId);
+            if (old == null)
+            {
+                throw new ArgumentException("Item not exist..");
+            }
             foreach (var prop in old.GetType().GetProperties())
             {
-                prop.SetValue(old, prop.GetValue(entity));
+                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                {
+                    prop.SetValue(old, prop.GetValue(entity));
+                }
             }
             context.SaveChanges();
         }

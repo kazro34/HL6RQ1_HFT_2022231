@@ -38,8 +38,8 @@ namespace HL6RQ1_HFT_2022231.Endpoint.Controllers
         }
 
         // PUT api/<AuthorController>/5
-        [HttpPut("{id}")]
-        public void Update([FromBody] Author value)
+        [HttpPut]
+        public void Put([FromBody] Author value)
         {
             this.logic.Update(value);
         }
