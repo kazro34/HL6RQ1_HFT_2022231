@@ -1,3 +1,4 @@
+using HL6RQ1_HFT_2022231.Endpoint.Services;
 using HL6RQ1_HFT_2022231.Logic;
 using HL6RQ1_HFT_2022231.Models;
 using HL6RQ1_HFT_2022231.Repository;
@@ -39,6 +40,8 @@ namespace HL6RQ1_HFT_2022231.Endpoint
             services.AddTransient<ILentingLogic, LentingLogic>();
             services.AddTransient<IAuthorLogic, AuthorLogic>();
 
+            services.AddSignalR();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -63,6 +66,7 @@ namespace HL6RQ1_HFT_2022231.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
