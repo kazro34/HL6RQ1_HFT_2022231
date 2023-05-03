@@ -1,4 +1,5 @@
 ﻿using HL6RQ1_HFT_2022231.Models;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,23 @@ using System.Windows.Input;
 
 namespace HL6RQ1_HFT_2022231.WPFClient
 {
-    public class AuthorWindowViewModel
+    public class AuthorWindowViewModel : ObservableRecipient
     {
         public RestCollection<Author> Authors { get; set; }
+
+        private Author selectedAuthor;
+
+        public Author SelectedAuthor
+        {
+            get { return selectedAuthor; }
+            set
+            {
+                SetProperty(ref selectedAuthor, value);
+                (DeleteAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
+                (UpdateAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
         public ICommand CreateAuthorCommand { get; set; }
 
         public ICommand DeleteAuthorCommand { get; set; }

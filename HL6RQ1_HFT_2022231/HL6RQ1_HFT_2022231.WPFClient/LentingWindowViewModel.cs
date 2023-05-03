@@ -1,4 +1,5 @@
 ﻿using HL6RQ1_HFT_2022231.Models;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,24 @@ using System.Windows.Input;
 
 namespace HL6RQ1_HFT_2022231.WPFClient
 {
-    public class LentingWindowViewModel
+    public class LentingWindowViewModel : ObservableRecipient
     {
         public RestCollection<Lenting> Lentings { get; set; }
+
+        private Lenting selectedLenting;
+
+        public Lenting SelectedLenting
+        {
+            get { return selectedLenting; }
+            set
+            {
+                SetProperty(ref selectedLenting, value);
+                (DeleteLentingCommand as RelayCommand).NotifyCanExecuteChanged();
+                (UpdateLentingCommand as RelayCommand).NotifyCanExecuteChanged();
+
+            }
+        }
+
         public ICommand CreateLentingCommand { get; set; }
 
         public ICommand DeleteLentingCommand { get; set; }
@@ -24,7 +40,7 @@ namespace HL6RQ1_HFT_2022231.WPFClient
 
             CreateLentingCommand = new RelayCommand(() =>
             {
-                Lentings.Add(new Author()
+                Lentings.Add(new Lenting()
                 {
                     Name = SelectedLenting.Name
                 });
