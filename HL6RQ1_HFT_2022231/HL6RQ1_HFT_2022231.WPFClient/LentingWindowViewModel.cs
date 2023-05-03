@@ -23,10 +23,17 @@ namespace HL6RQ1_HFT_2022231.WPFClient
             get { return selectedLenting; }
             set
             {
-                SetProperty(ref selectedLenting, value);
-                (DeleteLentingCommand as RelayCommand).NotifyCanExecuteChanged();
-                (UpdateLentingCommand as RelayCommand).NotifyCanExecuteChanged();
-
+                if (value != null)
+                {
+                    selectedLenting = new Lenting()
+                    {
+                        Name = value.Name,
+                        Id = value.Id
+                    };
+                    SetProperty(ref selectedLenting, value);
+                    (DeleteLentingCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateLentingCommand as RelayCommand).NotifyCanExecuteChanged();
+                }
             }
         }
 

@@ -23,9 +23,18 @@ namespace HL6RQ1_HFT_2022231.WPFClient
             get { return selectedAuthor; }
             set
             {
-                SetProperty(ref selectedAuthor, value);
-                (DeleteAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
-                (UpdateAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
+                if (value != null)
+                {
+                    selectedAuthor = new Author()
+                    {
+                        Name = value.Name,
+                        authorId = value.authorId
+                    };
+                    SetProperty(ref selectedAuthor, value);
+                    (DeleteAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
+                }
+                
             }
         }
 

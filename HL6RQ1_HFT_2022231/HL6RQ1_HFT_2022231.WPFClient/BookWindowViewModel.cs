@@ -23,9 +23,17 @@ namespace HL6RQ1_HFT_2022231.WPFClient
             get { return selectedBook; }
             set
             {
-                SetProperty(ref selectedBook, value);
-                (DeleteBookCommand as RelayCommand).NotifyCanExecuteChanged();
-                (UpdateBookCommand as RelayCommand).NotifyCanExecuteChanged();
+                if (value != null)
+                {
+                    selectedBook = new Book()
+                    {
+                        Title = value.Title,
+                        Id = value.Id
+                    };
+                    SetProperty(ref selectedBook, value);
+                    (DeleteBookCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateBookCommand as RelayCommand).NotifyCanExecuteChanged();
+                }
             }
         }
 
