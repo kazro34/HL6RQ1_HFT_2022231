@@ -27,18 +27,18 @@ namespace HL6RQ1_HFT_2022231.WPFClient
 
         private void Authors_Click(object sender, RoutedEventArgs e)
         {
-            //AuthorWindow proc = new AuthorWindow();
-            //proc.Show();
+            AuthorWindow proc = new AuthorWindow();
+            proc.Show();
         }
         private void Books_Click(object sender, RoutedEventArgs e)
         {
-            //BookWindow proc = new BookWindow();
-            //proc.Show();
+            BookWindow proc = new BookWindow();
+            proc.Show();
         }
         private void Lentings_Click(object sender, RoutedEventArgs e)
         {
-            //LentingWindow proc = new LentingWindow();
-            //proc.Show();
+            LentingWindow proc = new LentingWindow();
+            proc.Show();
         }
     }
 }
