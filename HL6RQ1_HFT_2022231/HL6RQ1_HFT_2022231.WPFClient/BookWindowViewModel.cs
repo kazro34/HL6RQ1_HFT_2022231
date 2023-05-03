@@ -56,7 +56,7 @@ namespace HL6RQ1_HFT_2022231.WPFClient
         {
             if (!IsInDesignMode)
             {
-                Books = new RestCollection<Book>("http://localhost:54941/", "book");
+                Books = new RestCollection<Book>("http://localhost:54941/", "book", "hub");
 
                 CreateBookCommand = new RelayCommand(() =>
                 {

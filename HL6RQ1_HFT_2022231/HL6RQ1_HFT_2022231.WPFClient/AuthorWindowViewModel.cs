@@ -57,7 +57,7 @@ namespace HL6RQ1_HFT_2022231.WPFClient
         {
             if(!IsInDesignMode)
             {
-                Authors = new RestCollection<Author>("http://localhost:54941/", "author");
+                Authors = new RestCollection<Author>("http://localhost:54941/", "author", "hub");
 
                 CreateAuthorCommand = new RelayCommand(() =>
                 {

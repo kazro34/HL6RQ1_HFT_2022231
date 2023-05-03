@@ -56,7 +56,7 @@ namespace HL6RQ1_HFT_2022231.WPFClient
         {
             if (!IsInDesignMode)
             {
-                Lentings = new RestCollection<Lenting>("http://localhost:54941/", "lenting");
+                Lentings = new RestCollection<Lenting>("http://localhost:54941/", "lenting", "hub");
 
                 CreateLentingCommand = new RelayCommand(() =>
                 {
