@@ -22,6 +22,8 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
+            <Label Content="Name: " Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedLenting.Name}" Padding="10" Margin="0,0,0,30"/>
             <Button Content="Create Lenting" Command="{Binding CreateLentingCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete Lenting" Command="{Binding DeleteLentingCommand}" Margin="10" Padding="10"/>
             <Button Content="Update Lenting" Command="{Binding UpdateLentingCommand}" Margin="10" Padding="10"/>

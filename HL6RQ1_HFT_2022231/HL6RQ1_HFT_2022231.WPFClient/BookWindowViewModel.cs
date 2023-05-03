@@ -3,9 +3,11 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HL6RQ1_HFT_2022231.WPFClient
@@ -33,31 +35,44 @@ namespace HL6RQ1_HFT_2022231.WPFClient
 
         public ICommand UpdateBookCommand { get; set; }
 
+        public static bool IsInDesignMode
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
+        }
+
         public BookWindowViewModel()
         {
-            Books = new RestCollection<Book>("http://localhost:54941/","book");
-
-            CreateBookCommand = new RelayCommand(() =>
+            if (!IsInDesignMode)
             {
-                Books.Add(new Book()
+                Books = new RestCollection<Book>("http://localhost:54941/", "book");
+
+                CreateBookCommand = new RelayCommand(() =>
                 {
-                    Title = SelectedBook.Title
+                    Books.Add(new Book()
+                    {
+                        Title = SelectedBook.Title
+                    });
                 });
-            });
 
-            UpdateBookCommand = new RelayCommand(() =>
-            {
-                Books.Update(SelectedBook);
-            });
+                UpdateBookCommand = new RelayCommand(() =>
+                {
+                    Books.Update(SelectedBook);
+                });
 
-            DeleteBookCommand = new RelayCommand(() =>
-            {
-                Books.Delete(SelectedBook.Id);
-            },
-            () =>
-            {
-                return SelectedBook != null;
-            });
+                DeleteBookCommand = new RelayCommand(() =>
+                {
+                    Books.Delete(SelectedBook.Id);
+                },
+                () =>
+                {
+                    return SelectedBook != null;
+                });
+            }
+            
         }
     }
 }

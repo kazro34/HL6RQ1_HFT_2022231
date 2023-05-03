@@ -3,9 +3,11 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HL6RQ1_HFT_2022231.WPFClient
@@ -33,31 +35,43 @@ namespace HL6RQ1_HFT_2022231.WPFClient
 
         public ICommand UpdateAuthorCommand { get; set; }
 
+        public static bool IsInDesignMode
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
+        }
+
         public AuthorWindowViewModel()
         {
-            Authors = new RestCollection<Author>("http://localhost:54941/", "author");
-
-            CreateAuthorCommand = new RelayCommand(() =>
+            if(!IsInDesignMode)
             {
-                Authors.Add(new Author()
+                Authors = new RestCollection<Author>("http://localhost:54941/", "author");
+
+                CreateAuthorCommand = new RelayCommand(() =>
                 {
-                    Name = SelectedAuthor.Name
+                    Authors.Add(new Author()
+                    {
+                        Name = SelectedAuthor.Name
+                    });
                 });
-            });
 
-            UpdateAuthorCommand = new RelayCommand(() =>
-            {
-                Authors.Update(SelectedAuthor);
-            });
+                UpdateAuthorCommand = new RelayCommand(() =>
+                {
+                    Authors.Update(SelectedAuthor);
+                });
 
-            DeleteAuthorCommand = new RelayCommand(() =>
-            {
-                Authors.Delete(SelectedAuthor.authorId);
-            },
-            () =>
-            {
-                return SelectedAuthor != null;
-            });
+                DeleteAuthorCommand = new RelayCommand(() =>
+                {
+                    Authors.Delete(SelectedAuthor.authorId);
+                },
+                () =>
+                {
+                    return SelectedAuthor != null;
+                });
+            }
         }
     }
 }

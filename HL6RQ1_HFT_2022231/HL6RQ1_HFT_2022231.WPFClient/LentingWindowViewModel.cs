@@ -3,9 +3,11 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HL6RQ1_HFT_2022231.WPFClient
@@ -34,31 +36,45 @@ namespace HL6RQ1_HFT_2022231.WPFClient
 
         public ICommand UpdateLentingCommand { get; set; }
 
+        public static bool IsInDesignMode
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
+        }
+
         public LentingWindowViewModel()
         {
-            Lentings = new RestCollection<Lenting>("http://localhost:54941/", "lenting");
-
-            CreateLentingCommand = new RelayCommand(() =>
+            if (!IsInDesignMode)
             {
-                Lentings.Add(new Lenting()
+                Lentings = new RestCollection<Lenting>("http://localhost:54941/", "lenting");
+
+                CreateLentingCommand = new RelayCommand(() =>
                 {
-                    Name = SelectedLenting.Name
+                    Lentings.Add(new Lenting()
+                    {
+                        Name = SelectedLenting.Name
+                    });
                 });
-            });
 
-            UpdateLentingCommand = new RelayCommand(() =>
-            {
-                Lentings.Update(SelectedLenting);
-            });
+                UpdateLentingCommand = new RelayCommand(() =>
+                {
+                    Lentings.Update(SelectedLenting);
+                });
 
-            DeleteLentingCommand = new RelayCommand(() =>
-            {
-                Lentings.Delete(SelectedLenting.Id);
-            },
-            () =>
-            {
-                return SelectedLenting != null;
-            });
+                DeleteLentingCommand = new RelayCommand(() =>
+                {
+                    Lentings.Delete(SelectedLenting.Id);
+                },
+                () =>
+                {
+                    return SelectedLenting != null;
+                });
+            }
+
+            
         }
     }
 }
