@@ -1,11 +1,9 @@
 ﻿using HL6RQ1_HFT_2022231.Models;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,39 +11,15 @@ using System.Windows.Input;
 
 namespace HL6RQ1_HFT_2022231.WPFClient
 {
-    public class MainWindowViewModel: ObservableRecipient
+    public class MainWindowViewModel
     {
-        public RestCollection<Author> Authors { get; set; }
+        public ICommand AuthorCommand { get; set; }
 
-        private Author selectedAuthor;
+        public ICommand BookCommand { get; set; }
 
-        public Author SelectedAuthor
-        {
-            get { return selectedAuthor; }
-            set
-            {
-                SetProperty(ref selectedAuthor, value);
-                (DeleteAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
-                //if (value != null)
-                //{
-                //    selectedAuthor = new Author()
-                //    {
-                //        Name = value.Name,
-                //        authorId = value.authorId,
-                //    };
-                    
-                //}              
-            }
-        }
+        public ICommand LentingCommand { get; set; }
 
-
-        public ICommand CreateAuthorCommand { get; set; }
-
-        public ICommand DeleteAuthorCommand { get; set; }
-
-        public ICommand UpdateAuthorCommand { get; set; }
-
-        public static bool IsInDesignMode 
+        public static bool IsInDesignMode
         {
             get
             {
@@ -53,38 +27,30 @@ namespace HL6RQ1_HFT_2022231.WPFClient
                 return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
             }
         }
-
         public MainWindowViewModel()
         {
             if (!IsInDesignMode)
             {
-                
-                Authors = new RestCollection<Author>("http://localhost:54941/", "author","hub");
 
-                CreateAuthorCommand = new RelayCommand(() =>
+
+
+                AuthorCommand = new RelayCommand(() =>
                 {
-                    Authors.Add(new Author()
-                    {
-                        Name = SelectedAuthor.Name
-                    });
+                    AuthorWindow AW = new AuthorWindow();
                 });
 
-                UpdateAuthorCommand = new RelayCommand(() => 
+                BookCommand = new RelayCommand(() =>
                 {
-                    Authors.Update(SelectedAuthor);
+                    Bookeditor BW = new Bookeditor();
                 });
 
-                DeleteAuthorCommand = new RelayCommand(() =>
+                LentingCommand = new RelayCommand(() =>
                 {
-                    Authors.Delete(SelectedAuthor.authorId);
-                },
-                () =>
-                {
-                    return SelectedAuthor != null;
+                   // Authors.Delete(SelectedAuthor.authorId);
                 });
-                
 
-            }          
+
+            }
         }
     }
 }
