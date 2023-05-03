@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{E0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{FDCD6DC8-A741-49FB-A2FC-8232A262140A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HL6RQ1_HFT_2022231.WPFClient", "HL6RQ1_HFT_2022231.WPFClient\HL6RQ1_HFT_2022231.WPFClient.csproj", "{A61783F3-0495-4E63-8C3F-87380A9BE4AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{9706147F-19C2-44FD-AD9C-6A16F462A3AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9706147F-19C2-44FD-AD9C-6A16F462A3AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9706147F-19C2-44FD-AD9C-6A16F462A3AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A61783F3-0495-4E63-8C3F-87380A9BE4AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A61783F3-0495-4E63-8C3F-87380A9BE4AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A61783F3-0495-4E63-8C3F-87380A9BE4AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A61783F3-0495-4E63-8C3F-87380A9BE4AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
