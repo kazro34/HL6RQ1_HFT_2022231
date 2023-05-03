@@ -38,7 +38,7 @@ namespace HL6RQ1_HFT_2022231.Endpoint.Controllers
         }
 
         // PUT api/<BookController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Update([FromBody] Book value)
         {
             this.logic.Update(value);
