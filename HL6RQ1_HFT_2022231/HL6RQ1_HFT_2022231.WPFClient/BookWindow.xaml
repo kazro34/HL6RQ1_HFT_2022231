@@ -21,5 +21,10 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel Grid.Column="1">
+            <Button Content="Create Book" Command="{Binding CreateBookCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete Book" Command="{Binding DeleteBookCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update Book" Command="{Binding UpdateBookCommand}" Margin="10" Padding="10"/>
+        </StackPanel>
     </Grid>
 </Window>

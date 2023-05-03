@@ -1,4 +1,5 @@
 ﻿using HL6RQ1_HFT_2022231.Models;
+using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,28 @@ namespace HL6RQ1_HFT_2022231.WPFClient
         public AuthorWindowViewModel()
         {
             Authors = new RestCollection<Author>("http://localhost:54941/", "author");
+
+            CreateAuthorCommand = new RelayCommand(() =>
+            {
+                Authors.Add(new Author()
+                {
+                    Name = SelectedAuthor.Name
+                });
+            });
+
+            UpdateAuthorCommand = new RelayCommand(() =>
+            {
+                Authors.Update(SelectedAuthor);
+            });
+
+            DeleteAuthorCommand = new RelayCommand(() =>
+            {
+                Authors.Delete(SelectedAuthor.authorId);
+            },
+            () =>
+            {
+                return SelectedAuthor != null;
+            });
         }
     }
 }
