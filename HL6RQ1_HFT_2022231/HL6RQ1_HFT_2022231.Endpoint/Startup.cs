@@ -59,6 +59,12 @@ namespace HL6RQ1_HFT_2022231.Endpoint
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HL6RQ1_HFT_2022231.Endpoint v1"));
             }
 
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:21165"));
+    
             app.UseRouting();
 
             app.UseAuthorization();
