@@ -62,7 +62,7 @@ namespace HL6RQ1_HFT_2022231.Client
         }
         public void StillOpenLentsByBookId()
         {
-            var items = rest.Get<long>("Stat/ StillOpenLentsByBookId()");
+            var items = rest.Get<long>("Stat/StillOpenLentsByBookId");
             if (items != null)
             {
                 Console.WriteLine("Book ID-s whitch are still out:");
