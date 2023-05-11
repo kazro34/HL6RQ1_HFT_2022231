@@ -1,0 +1,26 @@
+﻿<Window x:Class="HL6RQ1_HFT_2022231.WPFClient.StatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HL6RQ1_HFT_2022231.WPFClient"
+        mc:Ignorable="d"
+        Title="StatisticsWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label x:Name="AVG" Content=""   Background="LightBlue" Padding="10"/>
+            <Label Content="IDs: " Background="LightBlue" Padding="10"/>
+            <ListBox ItemsSource="{Binding collection}"/>
+            
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Button Content="List ID-s of who has to pay latency fine"   Margin="10" Padding="10" Click="NONCRUD1_click"/>
+            <Button Content="List book ID-s whitch are still out"  Margin="10" Padding="10" Click="NONCRUD2_click"/>
+            <Button Content="Average book price"  Margin="10" Padding="10" Click="NONCRUD3_click"/>
+        </StackPanel>
+    </Grid>
+</Window>

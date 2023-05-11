@@ -16,7 +16,7 @@ namespace HL6RQ1_HFT_2022231.Client
         }
         public void AvgLentprice()
         {
-            double price = rest.GetSingle<double>("Stat/AvgBookLentPrice");
+            double price = rest.GetSingle<double>("Stat/AVGLentingPrice");
             Console.WriteLine($"Average book price = {price}");
             Console.ReadLine();
         }
