@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Authors" Click="Authors_Click"  HorizontalAlignment="Center" Margin="0,36,0,0" VerticalAlignment="Top" Height="126" Width="380"/>
-        <Button Content="Books" Click="Books_Click" HorizontalAlignment="Center" Margin="0,174,0,0" VerticalAlignment="Top" Height="121" Width="380"/>
-        <Button Content="Lentings" Click="Lentings_Click" HorizontalAlignment="Center" Margin="0,307,0,0" VerticalAlignment="Top" Height="115" Width="380"/>
-
+        <Button Content="Authors" Click="Authors_Click"  HorizontalAlignment="Center" Margin="0,36,0,0" VerticalAlignment="Top" Height="70" Width="380"/>
+        <Button Content="Books" Click="Books_Click" HorizontalAlignment="Center" Margin="0,128,0,0" VerticalAlignment="Top" Height="70" Width="380"/>
+        <Button Content="Lentings" Click="Lentings_Click" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Height="70" Width="380"/>
+        <Button Content="Statistics" Click="Statistics_Click" HorizontalAlignment="Center" Margin="0,305,0,0" VerticalAlignment="Top" Height="70" Width="380"/>
     </Grid>
 </Window>

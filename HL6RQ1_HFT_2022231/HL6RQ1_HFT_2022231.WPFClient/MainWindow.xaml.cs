@@ -40,5 +40,11 @@ namespace HL6RQ1_HFT_2022231.WPFClient
             LentingWindow proc = new LentingWindow();
             proc.Show();
         }
+
+        private void Statistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow proc = new StatisticsWindow();
+            proc.Show();
+        }
     }
 }
