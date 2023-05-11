@@ -75,7 +75,21 @@ namespace HL6RQ1_HFT_2022231.WPFClient
             }
             return items;
         }
-
+        public List<T> Getp<T>(int param, string endpoint)
+        {
+            List<T> items = new List<T>();
+            HttpResponseMessage response = client.GetAsync(endpoint + "/" + param.ToString()).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                items = response.Content.ReadAsAsync<List<T>>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return items;
+        }
         public List<T> Get<T>(string endpoint)
         {
             List<T> items = new List<T>();

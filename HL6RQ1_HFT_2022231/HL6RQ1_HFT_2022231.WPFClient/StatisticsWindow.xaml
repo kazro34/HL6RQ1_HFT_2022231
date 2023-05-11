@@ -15,12 +15,17 @@
             <Label x:Name="AVG" Content=""   Background="LightBlue" Padding="10"/>
             <Label Content="IDs: " Background="LightBlue" Padding="10"/>
             <ListBox ItemsSource="{Binding collection}"/>
+            <ListBox ItemsSource="{Binding collection2}"/>
             
         </StackPanel>
         <StackPanel Grid.Column="1">
             <Button Content="List ID-s of who has to pay latency fine"   Margin="10" Padding="10" Click="NONCRUD1_click"/>
             <Button Content="List book ID-s whitch are still out"  Margin="10" Padding="10" Click="NONCRUD2_click"/>
             <Button Content="Average book price"  Margin="10" Padding="10" Click="NONCRUD3_click"/>
+            <Button Content="Average Lenting Prices By Authors"  Margin="10" Padding="10" Click="NONCRUD4_click"/>
+            <Label  Content="Please enter a year!" Background="BlanchedAlmond" Padding="10" Margin="0,30,0,0"/>
+            <TextBox x:Name="TB_year" Padding="10" Margin="10"/>
+            <Button Content="Average Income Per Book Per Year"  Margin="10" Padding="10" Click="NONCRUD5_click"/>
         </StackPanel>
     </Grid>
 </Window>

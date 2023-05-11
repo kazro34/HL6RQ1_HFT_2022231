@@ -24,14 +24,16 @@ namespace HL6RQ1_HFT_2022231.WPFClient
         static RestService rest;
         public List<long> StillOpenLents { get; set; }
         public List<long> Fine { get; set; }
-        public List<long> PricesByAuthors { get; set; }
-        
+        public List<KeyValuePair<string, double>> PricesByAuthors { get; set; }
+        public List<KeyValuePair<string, double>> AvarageIncomePerBookPerYear { get; set; }
         public ObservableCollection<long> collection { get; set; }
+        public ObservableCollection<KeyValuePair<string, double>> collection2 { get; set; }
         public StatisticsWindow()
         {
             InitializeComponent();
             DataContext = this;
             collection = new ObservableCollection<long>();
+            collection2 = new ObservableCollection<KeyValuePair<string, double>>();
             rest = new RestService("http://localhost:54941/");
         }
 
@@ -63,10 +65,26 @@ namespace HL6RQ1_HFT_2022231.WPFClient
         }
         private void NONCRUD4_click(object sender, RoutedEventArgs e)
         {
-            this.collection.Clear();
+            this.collection2.Clear();
             PricesByAuthors = rest.Get<KeyValuePair<string, double>>("Stat/AVGLentingPricesByAuthors");
-            Console.WriteLine("Author\tAvgPrice");
+            foreach (var item in PricesByAuthors)
+            {
+                collection2.Add(item);
+            }
 
         }
+
+        private void NONCRUD5_click(object sender, RoutedEventArgs e)
+        {
+            this.collection2.Clear();
+            int year = int.Parse(TB_year.Text);
+            AvarageIncomePerBookPerYear = rest.Getp<KeyValuePair<string, double>>(year, "Stat/GetAverageIncomePerBookPerYear");
+            foreach (var item in AvarageIncomePerBookPerYear)
+            {
+                collection2.Add(item);
+            }
+
+        }
+        
     }
 }
