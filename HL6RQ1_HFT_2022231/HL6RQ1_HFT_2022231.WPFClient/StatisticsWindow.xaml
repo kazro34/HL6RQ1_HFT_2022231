@@ -12,10 +12,10 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <Label x:Name="AVG" Content=""   Background="LightBlue" Padding="10"/>
-            <Label Content="IDs: " Background="LightBlue" Padding="10"/>
-            <ListBox ItemsSource="{Binding collection}"/>
-            <ListBox ItemsSource="{Binding collection2}"/>
+            <Label x:Name="AVG" Content="Average book price ..."   Background="BlanchedAlmond" Padding="10"/>
+            <Label Content="IDs: " Background="BlanchedAlmond" Padding="10"/>
+            <ListBox ItemsSource="{Binding collection}" Height="180" />
+            <ListBox ItemsSource="{Binding collection2}" Height="180"/>
             
         </StackPanel>
         <StackPanel Grid.Column="1">

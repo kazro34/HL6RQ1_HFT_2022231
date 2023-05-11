@@ -60,6 +60,7 @@ namespace HL6RQ1_HFT_2022231.WPFClient
         private void NONCRUD3_click(object sender, RoutedEventArgs e)
         {
             double price = rest.GetSingle<double>("Stat/AVGLentingPrice");
+            price = Math.Round(price);
             AVG.Content = price;
             AVG.ContentStringFormat = "Average book price {0} Ft";
         }
