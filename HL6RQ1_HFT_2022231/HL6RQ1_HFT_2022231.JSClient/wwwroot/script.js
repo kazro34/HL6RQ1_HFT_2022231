@@ -1,5 +1,5 @@
 ﻿let authors = [];
-let connection = null;
+let connection;
 
 let authorIdToUpdate = -1;
 

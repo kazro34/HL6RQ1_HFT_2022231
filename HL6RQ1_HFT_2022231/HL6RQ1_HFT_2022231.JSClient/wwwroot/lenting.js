@@ -1,5 +1,5 @@
 ﻿let lentings = [];
-let connection = null;
+let connection;
 
 let lentingIdToUpdate = -1;
 
@@ -44,8 +44,8 @@ async function getdata() {
     await fetch('http://localhost:54941/lenting/')
         .then(x => x.json())
         .then(y => {
-            authors = y;
-            //console.log(authors);
+            lentings = y;
+            //console.log(lentings);
             display()
         });
 }
@@ -54,11 +54,11 @@ async function getdata() {
 
 function display() {
     document.getElementById('resultarea').innerHTML = "";
-    authors.forEach(t => {
+    lentings.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
-            "<tr><td>" + t.Id + "</td><td>" + t.name + "</td><td>" +
-            `<button type="button" onclick="remove(${t.Id})">Delete</button>` +
-            `<button type="button" onclick="showupdate(${t.Id})">Update</button>`
+            "<tr><td>" + t.id + "</td><td>" + t.name + "</td><td>" +
+            `<button type="button" onclick="remove(${t.id})">Delete</button>` +
+            `<button type="button" onclick="showupdate(${t.id})">Update</button>`
             + "</td></tr>";
     });
 }
@@ -80,7 +80,7 @@ function create() {
 }
 
 function showupdate(id) {
-    document.getElementById('lentingnametoupdate').value = lentings.find(t => t['Id'] == id)['Name'];
+    document.getElementById('lentingnametoupdate').value = lentings.find(t => t['id'] == id)['Name'];
     document.getElementById('updateformdiv').style.display = 'flex';
     lentingIdToUpdate = id;
 }
@@ -91,7 +91,7 @@ function update() {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { Name: name, Id: lentingIdToUpdate })
+            { Name: name, id: lentingIdToUpdate })
     })
         .then(response => response)
         .then(data => {
