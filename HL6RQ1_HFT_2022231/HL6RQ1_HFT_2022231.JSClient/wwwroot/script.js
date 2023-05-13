@@ -1,15 +1,43 @@
 ﻿let authors = [];
-
+let connection = null;
 getdata();
+setupSignalR();
 
+function setupSignalR() {
+    connection = new signalR.HubConnectionBuilder()
+        .withUrl("http://localhost:54941/hub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
 
+    connection.on("AuthorCreated", (user, message) => {
+        getdata();
+    });
+    connection.on("AuthorDeleted", (user, message) => {
+        getdata();
+    });
+
+    connection.onclose(async () => {
+        await start();
+    });
+    start();
+}
+
+async function start() {
+    try {
+        awaitconnection.start();
+        console.log("SignalRConnected.");
+    } catch (err) {
+        console.log(err);
+        setTimeout(start, 5000);
+    }
+};
 
 async function getdata() {
-    await fetch('http://localhost:54941/author')
+    await fetch('http://localhost:54941/author/')
         .then(x => x.json())
         .then(y => {
             authors = y;
-            console.log(authors);
+            //console.log(authors);
             display()
         });
 }
