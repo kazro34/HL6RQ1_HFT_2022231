@@ -79,7 +79,7 @@ function create() {
 }
 
 function showupdate(id) {
-    document.getElementById('authornametoupdate').value = authors.find(t => t['authorId'] == id)['Name'];
+    document.getElementById('authornametoupdate').value = authors.find(t => t['authorId'] == id)['name'];
     document.getElementById('updateformdiv').style.display = 'flex';
     authorIdToUpdate = id;
 }

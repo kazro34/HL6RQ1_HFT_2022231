@@ -80,7 +80,7 @@ function create() {
 }
 
 function showupdate(id) {
-    document.getElementById('lentingnametoupdate').value = lentings.find(t => t['id'] == id)['Name'];
+    document.getElementById('lentingnametoupdate').value = lentings.find(t => t['id'] == id)['name'];
     document.getElementById('updateformdiv').style.display = 'flex';
     lentingIdToUpdate = id;
 }
