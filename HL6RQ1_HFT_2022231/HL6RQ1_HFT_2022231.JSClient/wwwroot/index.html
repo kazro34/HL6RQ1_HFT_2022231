@@ -8,18 +8,25 @@
 <body>
     <h1>Author Catalog</h1>
 
+    <div id="formdiv">
+        <label>Author Name</label>
+        <input type="text" id="authorname" />
+        <button type="button" onclick="create()">Add Author</button>
+    </div>
+
     <table>
         <thead>
             <tr>
                 <th> authorId</th>
                 <th>Name</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody id="resultarea">
-            
         </tbody>
     </table>
 
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
