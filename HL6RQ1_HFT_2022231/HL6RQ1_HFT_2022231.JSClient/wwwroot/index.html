@@ -2,31 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Author UI</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Main Page</title>
+    <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-    <h1>Author Catalog</h1>
-
-    <div id="formdiv">
-        <label>Author Name</label>
-        <input type="text" id="authorname" />
-        <button type="button" onclick="create()">Add Author</button>
+    <h1>Please choose one!</h1>
+    <div id="buttons">
+        <button onclick="AuthorPage()">Authors</button>
+        <button onclick="LentingPage()">Lentings</button>
+        <button onclick="BookPage()">Books</button>
+        <button onclick="StatisticsPage()">Statistics</button>       
     </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th> authorId</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="resultarea">
-        </tbody>
-    </table>
-
-    <script src ="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
-    <script src="script.js"></script>
+    <script src="indexScript.js"></script>
 </body>
 </html>
