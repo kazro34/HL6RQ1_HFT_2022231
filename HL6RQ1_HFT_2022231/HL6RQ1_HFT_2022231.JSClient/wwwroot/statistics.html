@@ -6,14 +6,56 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <button onclick="window.location.href='index.html';">Back</button>
     <h1>Statistics</h1>
-    <button onclick=""window.location.href='index.html';">Back</button>
-    <button onclick="getdata01()">Z790 Stats</button>
-    <button onclick="getdata02()">30+Mb Cache Stats</button>
-    <button onclick="getdata03()">Itegrated graphics Stats</button>
-    <button onclick="getdata04()">Max Turbo Freq More Then 4.9 Stats</button>
-    <button onclick="getdata05()">Mobile Processors With More Than 6 Core Stats</button>
-    <button onclick="getdata06()">Processors With More Than 30 Threads Stats</button>
-    <button onclick="getdata07()">Processors By Brands Stats</button>
+    <table>
+        <tr>
+            <td> <button onclick="getdata01()">Average book price</button></td>
+            <td><label id="AVG"></label></td>
+        </tr>
+        <tr>
+            <td>   <button onclick="getdata03()">List ID-s of who has to pay latency fine</button></td>
+            <td><label id="Latency"></label></td>
+        </tr>
+        <tr>
+            <td> <button onclick="getdata02()">List book ID-s whitch are still out</button></td>
+            <td><label id="Open"></label></td>
+        </tr>
+
+    </table>
+    <button onclick="getdata04()">Average Lenting Prices By Authors</button>
+    <button onclick="getdata05()">Average Income Per Book Per Year</button>
+    <input type="text" id="year" />
+
+
+    <div id="NONCRUD01FORM">
+        <label>Statistics 1</label>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="resultNONCRUD01">
+            </tbody>
+        </table>
+    </div>
+
+    <div id="NONCRUD07FORM" style="display:none">
+        <label>Statistics 2</label>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="resultNONCRUD07">
+            </tbody>
+        </table>
+    </div>
+    <script src="statistics.js"></script>
 </body>
 </html>
