@@ -32,7 +32,7 @@ function setupSignalR() {
 
 async function start() {
     try {
-        awaitconnection.start();
+        await connection.start();
         console.log("SignalRConnected.");
     } catch (err) {
         console.log(err);
